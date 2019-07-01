@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To boot up the application from a fresh environment
 
-Things you may want to cover:
+* `bundle install`
 
-* Ruby version
+* `rails db:migrate`
 
-* System dependencies
+* `rails db:seed`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The application is deployed to https://user-quiz.herokuapp.com/ this url
+ - If there are >=1 quizzes taken, they can be viewed in the https://user-quiz.herokuapp.com/quiz_events section for an overview of all results.
+ - Session variables are used for temporary results storage which will be cleared after the quiz is complete for each user session.
