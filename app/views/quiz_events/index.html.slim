@@ -1,0 +1,17 @@
+.header
+  .row
+    .offset-by-two.eight.columns
+      table.u-full-width
+        thead
+          tr
+            th = "User"
+            th = "Score"
+            th = "Started At"
+            th = "Completed At"
+        tbody
+          - @quiz_events.each do |quiz_event|
+            tr
+              td = quiz_event.user
+              td = quiz_event.score
+              td = quiz_event.created_at
+              td = quiz_event.completed_at

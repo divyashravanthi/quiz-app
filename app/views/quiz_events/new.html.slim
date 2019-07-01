@@ -1,9 +1,15 @@
 .header
   .row
     h2.center = @quiz.title
-  .row
-    .offset-by-four.four.columns
-      input type='text' class='u-full-width' placeholder='Enter your name..'
-  .row
-    .offset-by-four.four.columns
-      input type='button' class='button-primary u-full-width' value='Start Quiz'
+  = form_for QuizEvent.new, url: { action: "create" } do |f|
+    = f.hidden_field :quiz_id, value: @quiz.id
+    .row
+      .offset-by-four.four.columns
+        = f.text_field :user, class: 'u-full-width', placeholder: 'Enter your name..'
+    .row
+      .offset-by-four.four.columns
+        = f.submit 'Start Quiz', class: 'button-primary u-full-width'
+
+  - if QuizEvent.count > 0
+    .row.center
+      = link_to 'View all results', quiz_events_path

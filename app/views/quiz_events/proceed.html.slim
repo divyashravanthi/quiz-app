@@ -1,0 +1,17 @@
+.header
+  .row
+    = form_for @question, url: proceed_quiz_event_path(id: @quiz_event.id, question_id: @question.id) do |f|
+      .row
+        .eight.columns
+          .row
+            h2 = @question.title
+            - @question.answers.each do |answer|
+              .row
+                = f.radio_button :selected_option, answer.id, checked: answer.id.to_s == @question.selected_option
+                = answer.option_name
+          br.row
+            = f.submit 'Previous question', name: 'previous_step' unless @current_step == 0
+            - if current_step == @quiz_event.total_steps - 1
+              = f.submit 'Submit Quiz', class: 'button-primary u-pull-right'
+            - else
+              = f.submit 'Next question', name: 'next_step', class: 'button-primary u-pull-right'

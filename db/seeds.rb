@@ -9,7 +9,7 @@
 quiz = Quiz.create(title: 'Next level Quiz')
 
 # questions
-question1 = quiz.questions.create(title: 'Wat je favoriete versioning tool')
+question1 = quiz.questions.create(title: 'Wat je favoriete versioning tool?')
 question1.answers.create(option_name: 'SVN', points: 0)
 question1.answers.create(option_name: 'GIT', points: 10)
 question1.answers.create(option_name: 'CVS', points: -5)

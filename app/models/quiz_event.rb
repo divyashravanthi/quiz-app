@@ -1,5 +1,13 @@
 class QuizEvent < ApplicationRecord
   belongs_to :quiz
+
+  validates_presence_of :user
+
+  scope :completed, -> { where.not(completed_at: nil) }
+
+  def total_steps
+    quiz.questions.size
+  end
 end
 
 # == Schema Information
