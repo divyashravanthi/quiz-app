@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_06_30_135015) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: :cascade do |t|
     t.string "option_name", null: false
     t.integer "points"
-    t.integer "question_id"
+    t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_135015) do
 
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "quiz_id"
+    t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_135015) do
     t.string "user", null: false
     t.datetime "completed_at"
     t.integer "score"
-    t.integer "quiz_id"
+    t.bigint "quiz_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_quiz_events_on_quiz_id"
@@ -45,4 +48,7 @@ ActiveRecord::Schema.define(version: 2019_06_30_135015) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quiz_events", "quizzes"
 end
